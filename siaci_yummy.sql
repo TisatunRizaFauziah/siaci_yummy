@@ -1,77 +1,3 @@
-<<<<<<< HEAD
--- Create table: User
-CREATE TABLE "User" (
-    id SERIAL PRIMARY KEY,
-    first_name VARCHAR(50),
-    last_name VARCHAR(50),
-    username VARCHAR(50) UNIQUE,
-    email VARCHAR(100) UNIQUE,
-    password VARCHAR(100),
-    role VARCHAR(20),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- Create table: Product
-CREATE TABLE Product (
-    id SERIAL PRIMARY KEY,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    name_product VARCHAR(100),
-    category VARCHAR(50),
-    price VARCHAR(20),
-    description TEXT,
-    image_1 VARCHAR(255),
-    image_2 VARCHAR(255)
-);
-
--- Create table: Size
-CREATE TABLE Size (
-    id SERIAL PRIMARY KEY,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    name_size VARCHAR(20)
-);
-
--- Create table: Stock
-CREATE TABLE Stock (
-    id SERIAL PRIMARY KEY,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    id_size INT REFERENCES Size(id) ON DELETE CASCADE,
-    id_product INT REFERENCES Product(id) ON DELETE CASCADE,
-    quantity INT
-);
-
--- Create table: Cart
-CREATE TABLE Cart (
-    id SERIAL PRIMARY KEY,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    id_user INT REFERENCES "User"(id) ON DELETE CASCADE,
-    id_product INT REFERENCES Product(id) ON DELETE CASCADE,
-    id_size INT REFERENCES Size(id) ON DELETE CASCADE,
-    total_product INT
-);
-
--- Create table: Wishlist
-CREATE TABLE Wishlist (
-    id SERIAL PRIMARY KEY,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    id_user INT REFERENCES "User"(id) ON DELETE CASCADE,
-    id_product INT REFERENCES Product(id) ON DELETE CASCADE,
-    status VARCHAR(20)
-);
-
--- Create table: Order
-CREATE TABLE "Order" (
-    id SERIAL PRIMARY KEY,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    id_user INT REFERENCES "User"(id) ON DELETE CASCADE,
-    id_product INT REFERENCES Product(id) ON DELETE CASCADE,
-    id_size INT REFERENCES Size(id) ON DELETE CASCADE,
-    payment_method VARCHAR(50),
-    address VARCHAR(255),
-    status VARCHAR(20),
-    no_telp VARCHAR(20),
-    total_product INT
-);
-=======
 create table users(
 id serial primary key,
 username varchar(300),
@@ -83,7 +9,7 @@ id serial primary key,
 name varchar(225),
 price int,
 stok int,
-imageUrl text,
+imageUrl text
 )
 
 ALTER TABLE users ADD COLUMN role VARCHAR(10) DEFAULT 'user';
@@ -177,4 +103,3 @@ EXECUTE FUNCTION move_order_to_history();
 
 
 
->>>>>>> f9c65f16600fb57cee316b41a5da01fd46c33af9
